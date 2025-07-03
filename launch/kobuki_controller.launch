@@ -1,0 +1,3 @@
+<launch>
+  <node pkg="kobuki_voice" type="kobuki_controller.py" name="kobuki_voice_controller_node" output="screen"/>
+</launch>
