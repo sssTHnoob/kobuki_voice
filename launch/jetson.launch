@@ -1,4 +1,5 @@
 <launch>
   <include file="$(find kobuki_node)/launch/minimal.launch"/>
   <node pkg="kobuki_voice" type="receiver.py" name="final" output="screen"/>
+  <node pkg="kobuki_voice" type="jetson_screen.py" name="screen" output="screen"/>
 </launch>
