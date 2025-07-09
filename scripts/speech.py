@@ -13,7 +13,7 @@ r.dynamic_energy_threshold = False
 with sr.Microphone(device_index=2) as source:
     rospy.logwarn("Calibrating microphone for ambient noise... Please be quiet for a moment.")
     r.adjust_for_ambient_noise(source, duration=3)
-    r.energy_threshold += 100
+    #r.energy_threshold += 100
     rospy.logwarn("Calibration complete! Set energy threshold to: {}".format(r.energy_threshold))
     rospy.logwarn("You can now start speaking.")
 

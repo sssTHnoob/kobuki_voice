@@ -27,7 +27,7 @@ def odom_callback(msg):
     (roll, pitch, yaw) = euler_from_quaternion(orientation_list)
     current_yaw = yaw
 
-def move_distance(distance_m, linear_speed=0.3, tolerance=0.05):
+def move_distance(distance_m, linear_speed=0.1, tolerance=0.05):
     global current_x, current_y
     initial_x = current_x
     initial_y = current_y
@@ -51,7 +51,7 @@ def move_distance(distance_m, linear_speed=0.3, tolerance=0.05):
     vel_pub.publish(twist_msg)
     time.sleep(0.5)
 
-def turn_degrees(degrees, angular_speed=0.7, tolerance_rad=0.05):
+def turn_degrees(degrees, angular_speed=0.5, tolerance_rad=0.05):
     global current_yaw
     rate = rospy.Rate(20)
     initial_yaw = current_yaw
@@ -104,7 +104,7 @@ def callback(data):
     if s_command[0] != "" and s_command[1] != "":
         try:
             s_command[1] = float(s_command[1])
-            rospy.loginfo(s_command)
+            pub.publish(str(s_command))
             command.append(s_command)
         except ValueError: pass
 

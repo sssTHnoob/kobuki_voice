@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="kobuki_voice" type="speech.py" name="speech" output="screen"/>
+  <node pkg="kobuki_voice" type="speech_recog.py" name="speech_recog" output="screen"/>
+  <node pkg="kobuki_voice" type="control_test.py" name="controller" output="screen"/>
+  <node pkg="kobuki_voice" type="set_command.py" name="set_command" output="screen"/>
+</launch>
