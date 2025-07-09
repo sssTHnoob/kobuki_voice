@@ -1,3 +1,0 @@
-<launch>
-  <node pkg="kobuki_voice" type="speech_to_text.py" name="speech_recognizer_node" output="screen"/>
-</launch>
