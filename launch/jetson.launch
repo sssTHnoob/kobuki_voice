@@ -1,0 +1,4 @@
+<launch>
+  <include file="$(find kobuki_node)/launch/minimal.launch"/>
+  <node pkg="kobuki_voice" type="receiver.py" name="final" output="screen"/>
+</launch>
