@@ -39,7 +39,7 @@ def speech_callback(data):
     elif "move backward" in recognized_text or "ถอยหลัง" in recognized_text:
         vel.linear.x = -0.1
         vel.angular.z = 0.0
-        threading.Thread(target=speak_func, args=("mvoe backward",)).start()
+        threading.Thread(target=speak_func, args=("move backward",)).start()
     elif "turn left" in recognized_text or "ซ้าย" in recognized_text:
         vel.linear.x = 0.0
         vel.angular.z = 0.5
@@ -68,6 +68,7 @@ def speech_callback(data):
 rate = rospy.Rate(20)
 vel_pub = rospy.Publisher('/final', Twist, queue_size=10)
 rospy.Subscriber('/recognized_speech', String, speech_callback)
+rospy.Subscriber('/recognized_speech_command', String, speech_callback)
 while not rospy.is_shutdown():
     if not command_run:
         out.linear.x = vel.linear.x * f

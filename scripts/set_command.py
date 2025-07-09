@@ -109,7 +109,7 @@ def callback(data):
         except ValueError: pass
 
 vel_pub = rospy.Publisher('final', Twist, queue_size=10)
-pub = rospy.Publisher('recognized_speech', String, queue_size=10)
+pub = rospy.Publisher('recognized_speech_command', String, queue_size=10)
 rospy.Subscriber('/set_command', String,callback)
 odom_sub = rospy.Subscriber('/odom', Odometry, odom_callback)
 rospy.spin()
