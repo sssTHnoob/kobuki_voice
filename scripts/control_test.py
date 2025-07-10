@@ -67,7 +67,7 @@ def speech_callback(data):
 
 rate = rospy.Rate(20)
 vel_pub = rospy.Publisher('/final', Twist, queue_size=10)
-rospy.Subscriber('/recognized_speech', String, speech_callback)
+rospy.Subscriber('/recog_speech', String, speech_callback)
 rospy.Subscriber('/recognized_speech_command', String, speech_callback)
 while not rospy.is_shutdown():
     if not command_run:

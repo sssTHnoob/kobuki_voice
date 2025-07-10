@@ -9,7 +9,7 @@ rospy.init_node('speech_recognizer')
 r=sr.Recognizer()
 chained = False
 
-pub = rospy.Publisher('recognized_speech', String, queue_size=10)
+pub = rospy.Publisher('recog_speech', String, queue_size=10)
 comm = rospy.Publisher('set_command', String,queue_size=10)
 def callback(data):
     global chained
