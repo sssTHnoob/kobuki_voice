@@ -13,6 +13,7 @@ def wheel_callback(data):
 def bumper_callback(data):
     if data.state==1: rospy.logerr("bumper force stop")
 
+rospy.init_node("jetson")
 rospy.Subscriber('/recog_speech', String, speech_callback)
 rospy.Subscriber('/recognized_speech_command', String, speech_callback)
 rospy.Subscriber('/mobile_base/events/wheel_drop', WheelDropEvent, wheel_callback)
