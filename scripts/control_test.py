@@ -5,7 +5,7 @@ from std_msgs.msg import String
 from geometry_msgs.msg import Twist
 from kobuki_msgs.msg import Sound
 import pyttsx3
-import threading
+import multiprocessing
 rospy.init_node("controller")
 
 vel = Twist()
@@ -35,33 +35,33 @@ def speech_callback(data):
     elif "move forward" in recognized_text or "เดินหน้า" in recognized_text:
         vel.linear.x = 0.1
         vel.angular.z = 0.0
-        threading.Thread(target=speak_func, args=("move forward",)).start()
+        multiprocessing.Process(target=speak_func, args=("move forward",)).start()
     elif "move backward" in recognized_text or "ถอยหลัง" in recognized_text:
         vel.linear.x = -0.1
         vel.angular.z = 0.0
-        threading.Thread(target=speak_func, args=("move backward",)).start()
+        multiprocessing.Process(target=speak_func, args=("move backward",)).start()
     elif "turn left" in recognized_text or "ซ้าย" in recognized_text:
         vel.linear.x = 0.0
         vel.angular.z = 0.5
-        threading.Thread(target=speak_func, args=("turn left",)).start()
+        multiprocessing.Process(target=speak_func, args=("turn left",)).start()
     elif "turn right" in recognized_text or "ขวา" in recognized_text:
         vel.linear.x = 0.0
         vel.angular.z = -0.5
-        threading.Thread(target=speak_func, args=("turn right",)).start()
+        multiprocessing.Process(target=speak_func, args=("turn right",)).start()
     elif "stop" in recognized_text or "หยุด" in recognized_text:
         vel.linear.x = 0
         vel.angular.z = 0
-        threading.Thread(target=speak_func, args=("stop",)).start()
+        multiprocessing.Process(target=speak_func, args=("stop",)).start()
     elif "speed up" in recognized_text or "เร่ง" in recognized_text or "เพิ่ม" in recognized_text:
         f+=1
-        threading.Thread(target=speak_func, args=("speed level" + str(f),)).start()
+        multiprocessing.Process(target=speak_func, args=("speed level" + str(f),)).start()
     elif "speed down" in recognized_text or "ลด" in recognized_text:
         if f>1:
             f -= 1
-            threading.Thread(target=speak_func, args=("speed level" + str(f),)).start()
+            multiprocessing.Process(target=speak_func, args=("speed level" + str(f),)).start()
     elif "reset" in recognized_text or "รีเซ็ต" in recognized_text:
         f = 1
-        threading.Thread(target=speak_func, args=("speed level reset",)).start()
+        multiprocessing.Process(target=speak_func, args=("speed level reset",)).start()
 
 
 
