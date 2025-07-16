@@ -82,9 +82,9 @@ def callback(data):
     text = data.data.lower()
     rospy.loginfo("set_command receive: %s", text)
     s_command = ["",""]
-    if "forward" in text or "เดินหน้า" in text:
+    if "forward" in text or "หน้า" in text:
         s_command[0] = "forward"
-    elif "backward" in text or "ถอยหลัง" in text:
+    elif "backward" in text or "หลัง" in text:
         s_command[0] = "backward"
     elif "left" in text or "ซ้าย" in text:
         s_command[0] = "left"

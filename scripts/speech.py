@@ -5,7 +5,7 @@ from audio_common_msgs.msg import AudioData
 from speech_recognition import WaitTimeoutError
 rospy.init_node('speech_receive')
 
-pub = rospy.Publisher('speech', AudioData, queue_size=10)
+pub = rospy.Publisher('speech', AudioData, queue_size=3)
 r = sr.Recognizer()
 r.pause_threshold = 0.5
 r.dynamic_energy_threshold = False
