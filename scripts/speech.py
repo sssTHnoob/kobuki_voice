@@ -7,7 +7,8 @@ rospy.init_node('speech_receive')
 
 pub = rospy.Publisher('speech', AudioData, queue_size=3)
 r = sr.Recognizer()
-r.pause_threshold = 0.5
+r.non_speaking_duration = 0.4
+r.pause_threshold = 0.4
 r.dynamic_energy_threshold = False
 
 with sr.Microphone(device_index=2) as source:
