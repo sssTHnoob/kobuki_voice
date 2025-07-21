@@ -93,6 +93,7 @@ def callback(data):
     elif "delete" in text:
         if len(s_command) > 0:
             s_command.pop(-1)
+            rospy.loginfo("delete last command")
     elif "command" in text:
         for c in command:
             if c[0] == "forward": move_distance(c[1])

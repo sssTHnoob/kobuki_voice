@@ -12,27 +12,28 @@ vel = Twist()
 zero_twist = Twist()
 zero_twist.linear.x = 0.0
 zero_twist.angular.z = 0.0
-force_stop = False
+wheel_stop = False
+bumper_stop = False
 
 
 def set_speed(data):
     global vel
     vel = data
 def wheel_callback(data):
-    global force_stop
+    global wheel_stop
     if data.state==WheelDropEvent.DROPPED:
-        force_stop = True
+        wheel_stop = True
         sound_pub.publish(bsound)
         rospy.logerr("wheel force stop")
-    else: force_stop = False
+    else: wheel_stop = False
 
 def bumper_callback(data):
-    global force_stop
+    global bumper_stop
     if data.state==1:
-        force_stop = True
+        bumper_stop = True
         sound_pub.publish(bsound)
         rospy.logerr("bumper force stop")
-    else: force_stop = False
+    else: bumper_stop = False
 
 
 rate = rospy.Rate(30)
@@ -43,7 +44,7 @@ rospy.Subscriber('/mobile_base/events/bumper', BumperEvent, bumper_callback)
 rospy.Subscriber('/final',Twist,set_speed)
 
 while not rospy.is_shutdown():
-    if force_stop and vel.linear.x > 0:
+    if (bumper_stop and vel.linear.x > 0) or wheel_stop:
         vel_pub.publish(zero_twist)
     else: vel_pub.publish(vel)
     rate.sleep()
