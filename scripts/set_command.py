@@ -90,6 +90,9 @@ def callback(data):
         s_command[0] = "left"
     elif "right" in text or "ขวา" in text:
         s_command[0] = "right"
+    elif "delete" in text:
+        if len(s_command) > 0:
+            s_command.pop(-1)
     elif "command" in text:
         for c in command:
             if c[0] == "forward": move_distance(c[1])
